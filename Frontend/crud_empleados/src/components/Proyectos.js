@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Proyectos = () => {
+    console.log("componente montado Proyectos")
     const [empleados, setEmpleados] = useState([]);
 
     useEffect(() => {
-        console.log("componente montado")
+
         axios.get('http://localhost:8000/api/proyectos/')
             .then(response => {
                 setEmpleados(response.data);
