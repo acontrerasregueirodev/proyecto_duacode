@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const EmpleadoManager = () => {
-    console.log("Empleado manager cargado")
+function Marketing() {
     const [empleados, setEmpleados] = useState([]);
     const [formData, setFormData] = useState({
         nombre: '',
@@ -18,16 +17,15 @@ const EmpleadoManager = () => {
     });
     const [editingEmpleadoId, setEditingEmpleadoId] = useState(null);
 
-    // Cargar empleados
     const fetchEmpleados = async () => {
+        console.log("Cargando empleados...");
         const response = await axios.get('http://localhost:8000/api/empleados/');
         setEmpleados(response.data);
-
     };
 
     useEffect(() => {
         fetchEmpleados();
-    }, []);
+    }, []); // Solo se ejecuta una vez al montar el componente
 
     // Crear o actualizar empleado
     const handleSubmit = async (e) => {
@@ -55,8 +53,8 @@ const EmpleadoManager = () => {
                     },
                 });
             }
-            fetchEmpleados();
-            resetForm();
+            //fetchEmpleados(); // Recargar la lista de empleados
+            //resetForm(); // Reiniciar el formulario
         } catch (error) {
             console.error('Error al guardar empleado:', error);
             if (error.response) {
@@ -70,7 +68,7 @@ const EmpleadoManager = () => {
     const deleteEmpleado = async (id) => {
         try {
             await axios.delete(`http://localhost:8000/api/empleados/${id}/`);
-            fetchEmpleados();
+            fetchEmpleados(); // Recargar la lista de empleados
         } catch (error) {
             console.error('Error al eliminar empleado:', error);
         }
@@ -147,6 +145,6 @@ const EmpleadoManager = () => {
             </ul>
         </div>
     );
-};
+}
 
-export default EmpleadoManager;
+export default Marketing;
