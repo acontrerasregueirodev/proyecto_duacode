@@ -32,7 +32,8 @@ const DetalleEmpleado = () => {
             <h1>Detalles del Empleado</h1>
             {empleadoDetail && (
                 <div>
-                    <img src={`http://localhost:8000/media/${empleadoDetail.foto}`} alt={`${empleadoDetail.nombre} ${empleadoDetail.apellido_1}`} />
+                    <img src={`http://localhost:8000/media/${empleadoDetail.foto}`}
+                        alt={`${empleadoDetail.nombre} ${empleadoDetail.apellido_1}`} />
                     <h2>{empleadoDetail.nombre} {empleadoDetail.apellido_1} {empleadoDetail.apellido_2}</h2>
                     <p>Email: {empleadoDetail.email}</p>
                     <p>Teléfono: {empleadoDetail.telefono}</p>

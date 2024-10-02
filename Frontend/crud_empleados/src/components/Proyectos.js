@@ -1,40 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Proyectos = () => {
-    console.log("componente montado Proyectos")
-    const [empleados, setEmpleados] = useState([]);
+    const [proyectos, setProyectos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        const fetchProyectos = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/api/proyectos/');
+                setProyectos(response.data); // Asignar la lista de proyectos al estado
+                setLoading(false);
+            } catch (err) {
+                setError(err);
+                setLoading(false);
+            }
+        };
 
-        axios.get('http://localhost:8000/api/proyectos/')
-            .then(response => {
-                setEmpleados(response.data);
-                console.log(response.data)
-            })
-            .catch(error => {
-                console.error("Hubo un error al obtener los proyectos", error);
-            });
+        fetchProyectos();
     }, []);
+
+    if (loading) return <div>Cargando proyectos...</div>;
+    if (error) return <div>Error al cargar proyectos: {error.message}</div>;
 
     return (
         <div>
-            <h1>Lista de Empleados y Proyectos</h1>
-            {empleados.map(empleado => (
-                <div key={empleado.id}>
-                    <h2>{empleado.nombre} {empleado.apellido_1}</h2>
-                    <p>Puesto: {empleado.puesto}</p>
-                    <h3>Proyectos Asignados:</h3>
-                    <ul>
-                        {empleado.proyectos.map(proyecto => (
-                            <li key={proyecto.id}>{proyecto.nombre}</li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
+            <h1>Lista de Proyectos</h1>
+            {proyectos.length > 0 ? (
+                <ul>
+                    {proyectos.map((proyecto) => (
+                        <li key={proyecto.id}>
+                            <h2>{proyecto.nombre}</h2>
+                            <p>{proyecto.descripcion}</p>
+                            <p>Fecha de Inicio: {proyecto.fecha_inicio}</p>
+                            <p>Fecha de Fin: {proyecto.fecha_fin || 'En curso'}</p>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No hay proyectos disponibles.</p>
+            )}
         </div>
     );
-}
+};
 
 export default Proyectos;
 

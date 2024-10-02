@@ -6,7 +6,7 @@ from proyectos.models import Proyecto
 class ProyectoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proyecto
-        fields = ['id', 'nombre', 'descripcion', 'fecha_inicio', 'fecha_fin']
+        fields = '__all__'
 
 #Creamos un serializador que nos permita convertir Empleado a JSON y viceversa
 # Serializador para el modelo Empleado que incluye los proyectos asociados
