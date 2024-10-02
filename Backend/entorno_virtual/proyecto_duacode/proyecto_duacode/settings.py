@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'corsheaders',
     'proyectos',
+    'subir_archivo',
 ]
 # Nuestra configuración de rest framework
  
@@ -74,6 +75,8 @@ MIDDLEWARE = [
 ]
 #Configuración cors para acceder desde el frontend
 CORS_ALLOW_ALL_ORIGINS = True
+
+
 
 ROOT_URLCONF = 'proyecto_duacode.urls'
 

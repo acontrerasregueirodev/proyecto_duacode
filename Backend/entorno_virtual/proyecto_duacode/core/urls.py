@@ -9,3 +9,4 @@ router.register(r'empleados', Mostrar_Empleado)  # Genera rutas como /api/emplea
 urlpatterns = [
     path('', include(router.urls)),
 ]
+
