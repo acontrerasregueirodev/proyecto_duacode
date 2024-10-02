@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const EmpleadoManager = () => {
     console.log("Empleado manager cargado")
@@ -141,6 +142,7 @@ const EmpleadoManager = () => {
                             />
                         )}
                         {empleado.nombre} {empleado.apellido_1}
+                        <Link to={`/empleados/${empleado.id}`}>Detalle Empleado</Link>
                         <button onClick={() => editEmpleado(empleado)}>Editar</button>
                         <button onClick={() => deleteEmpleado(empleado.id)}>Eliminar</button>
                     </li>

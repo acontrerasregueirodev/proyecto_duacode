@@ -3,6 +3,7 @@ import { Link, Routes, Route } from 'react-router-dom';
 import EmpleadoManager from './EmpleadoManager';
 import Proyectos from './Proyectos';
 import Marketing from './Marketing';
+import DetalleEmpleado from './DetalleEmpleado';
 // import Test from './Test';
 
 const Menu = () => {
@@ -25,6 +26,8 @@ const Menu = () => {
                     <li><Link to="/empleados" onClick={toggleMenu}>Empleados</Link></li>
                     <li><Link to="/marketing" onClick={toggleMenu}>Marketing</Link></li>
                     <li><Link to="/proyectos" onClick={toggleMenu}>Proyectos</Link></li>
+
+
                     {/* <li><Link to="/test" onClick={toggleMenu}>Test</Link></li> */}
 
                 </ul>
@@ -40,6 +43,7 @@ const Menu = () => {
                         <Route path="/empleados" element={<EmpleadoManager />} />
                         <Route path="/marketing" element={<Marketing />} />
                         <Route path="/proyectos" element={<Proyectos />} />
+                        <Route path="/empleados/:id" element={<DetalleEmpleado />} />
                         {/* <Route path="/test" element={<Test />} /> */}
                     </Routes>
                 </div>
